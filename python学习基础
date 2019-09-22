@@ -1,0 +1,339 @@
+
+# coding: utf-8
+
+# In[2]:
+
+#python注释方法"#"'''python多行注释三引号'''
+
+
+# In[ ]:
+
+#python中标识符命名规则为：第一个字符为字母或下划线，除第一个字符以为的其他字符可以是字母、下划线或数字
+#python中，常见的数据类型有：数、字符串、列表(list)、元组(tuple)、集合(set)、字典(dictionary)
+
+
+# In[3]:
+
+#列表(list)
+abc=['my','you']
+abc[1]='he'
+print(abc[0],abc[1][1])
+
+
+# In[4]:
+
+#元组(tuple) 一旦初始化就不能修改
+cde=('my','you')
+print(cde[0])
+cde[1]='he'
+
+
+# In[7]:
+
+#集合(set)
+a='sdhjdsfhjkdsf'
+b='fihrghsad'
+sa=set(a)
+sb=set(b)
+print(sa&sb)
+print(sa|sb)
+
+
+# In[8]:
+
+#字典(dictionary) {key1:value1,key2:value}
+d1={'name':'weiwei','sex':'man'}
+print(d1['name'],d1['sex'])
+
+
+# In[9]:
+
+#运算符‘+’，‘-’，‘*’，‘／’，‘%’，‘／／’
+print(26//4,26/4,26%4)
+
+
+# In[27]:
+
+#python中有3种基本控制流：顺序结构、条件分支结构、循环结构
+#条件分支结构 if elif else 
+a=6
+if a==5:
+    print(a)
+elif a<10:
+    print('小于10不等于5的数')
+else:
+    print('大于10的数')
+
+
+# In[28]:
+
+#while 循环
+a=6
+while a>2:
+    print(a)
+    a=a-1
+
+
+# In[29]:
+
+#for 循环
+a=['a','b','c','d','e']
+b=0
+for i in a:
+    b=b+1
+    print(b,i)
+a=['a','b','c','d','e']
+for i in range(0,10):
+    print(i)  
+
+
+# In[69]:
+
+#continue只中断一次
+for i in range(0,8):
+    if(i==6):
+        continue
+    print(i)
+#break彻底中断
+for i in range(0,8):
+    if(i==6):
+        break
+    print(i)
+
+
+# In[105]:
+
+#训练实例：输出乘法口诀
+for i in range(1,10):
+    for j in range(1,i+1):
+        print(str(i)+'*'+str(j)+'='+str(i*j)+'  ',end='')  
+        #str类型用‘+’合在一起
+    print()
+
+
+# In[103]:
+
+#训练实例：反向输出乘法口诀,range(a,b,c)从a开始遍历至b+!,步长为c,步长为负，即为逆序遍历。
+for i in range(9,0,-1):   
+    for j in range(i,0,-1):
+        print(str(i)+'*'+str(j)+'='+str(i*j)+' ',end='')  
+    print()
+
+
+# In[ ]:
+
+#认识python函数
+#函数的本质就是功能的封装。使用函数可以大大提高编程的效率与程序的可读性。
+
+
+# In[135]:
+
+#变量是有生效范围的，这个生效范围我们成为作用域。作用域从变量出现开始到程序的最末的变量叫全局变量，作用域只在局部的变量叫做局部变量。
+#作用域
+#my全局变量，ny局部变量,将局部变量ky使用global，调用函数后变为全局变量
+my=1
+def func():
+    global ky
+    ny=2
+    ky=3
+    ky+=1
+    print(ky,ny)
+func()
+print(ky)
+print(my)
+print(ny)
+
+
+# In[136]:
+
+#函数的定义和调用
+def abc():
+    print('abc!')
+abc()
+
+
+# In[137]:
+
+#在函数中，如果需要让函数与外界有数据的传递，我们则需要使用参数。
+#参数分为形参和实参，一般来说，在函数定义时使用的参数是形参，在函数调用时使用的参数叫做实参。
+def function1(a,b):#形参
+    if(a>b):
+        print(a)
+    else:
+        print(b)
+function1(2,3)#实参
+
+
+# In[ ]:
+
+#什么是python模块
+#我们可以按需求类别常见的功能(函数)组合在一起，形成模块。以后我们要实现这一类功能的时候，直接导入该模块即可。模块里面的函数叫做模块的方法。
+#系统自带的模块在安装目录的lib目录中。
+
+
+# In[153]:
+
+#import 模块
+#import urllib
+from urllib import request #从某一文件夹找到下一目录中模块,import了谁，就从谁开始写
+data1=request.urlopen("http://www.baidu.com").read() #爬虫
+print(len(data1))
+data2=request.urlopen("http://m.baidu.com").read()
+print(len(data2))
+
+
+# In[162]:
+
+#自定义模块的使用，模块放到相应代码文件目录下
+from zdymdtest import *
+print(zhmd())
+
+
+# In[184]:
+
+#文件操作
+#open("打开文件名称","打开方式")，'w'有文件即打开，没文件自动创建再打开
+fh=open('/Users/zanghong/Documents/腾讯工作/原始数据/1.txt','w')
+contents1='我是上半年数据'
+fh.write(contents1)
+fh.close()
+#open("打开文件名称","打开方式")，'r'有文件即打开，没文件报错
+fh1=open('/Users/zanghong/Documents/腾讯工作/原始数据/2.txt','r')
+print(fh1.read())
+fh.close()
+#按行读取
+fh2=open('/Users/zanghong/Documents/腾讯工作/原始数据/2.txt','r')
+while True:
+    data=fh2.readline()
+    if len(data)==0:
+        break
+    print(data)
+fh2.close()
+
+
+# In[185]:
+
+#爬虫过程中异常数据处理
+try:
+    print('my')
+    printsds('hi')
+except Exception as er:#查找到异常
+    print(er)
+    print('hello')
+
+
+# In[244]:
+
+#如何将多个表中的内容合并在一起
+#思路：使用excel模块，比如xlrd,xlwt,openpyxl,xlsxwriter等模块。
+#xlrd模块主要用于读取excel表，
+#xlwt与xlsxwriter用于将数据写入表中，但不能修改表
+#方案1:使用openpyxl，只对xlsx有效
+#方案2:仍然使用xlwt与xlsxwriter等模块，先将每次读取的信息存储到list(列表)中，然后一次写入。
+import xlrd,xlsxwriter
+#待合并excel,列表形式存储需要合并的文件
+allxls=['/Users/zanghong/Documents/腾讯工作/原始数据/第一个测试文件.xlsx',
+        '/Users/zanghong/Documents/腾讯工作/原始数据/第二个测试文件.xlsx',
+        '/Users/zanghong/Documents/腾讯工作/原始数据/第三个测试文件.xlsx']
+#目标excel，设置合并好的文件存储的路径
+end_xls='/Users/zanghong/Documents/腾讯工作/原始数据/合并测试文件.xlsx'
+
+#打开表格
+def open_xls(file):
+    try:
+        fb=xlrd.open_workbook(file)
+        return fb
+    except Eexception as e:
+        print('打开文件错误:'+e)
+        
+#获取所有sheet
+def getsheet(fh):
+    return fh.sheets()
+
+#读取某个sheet的行数
+def getnrows(fh,sheet):
+    table=fh.sheets()[sheet]
+    shnrows=table.nrows
+    return shnrows
+    
+#读取某个文件的内容并返回所有行的值
+def get_file_value(fb,shnum):    
+    fh=open_xls(fb)#打开此文件
+    table=fh.sheet_by_name(shname[shnum])#获取当前文件当前sheet名的内容
+    row_num=getnrows(fh,shnum)#得到行数
+    lenrvalue=len(rvalue)#一开始lenrvalue为0,随着以行为单位的继续添加，rvalue长度按行数增加。当一个sheet为单位的循环结束后，rvalue长度增加一个sheet为单位的长度。
+    print('看这里'+str(lenrvalue))
+    if y>0:
+        for row in range(1,row_num):#按行读取，一行一行读取，读取整个sheet
+            rdata=table.row_values(row)
+            rvalue.append(rdata)
+            print(rvalue[lenrvalue:])
+        filevalue.append(rvalue[lenrvalue:])#按sheet为单位，添加到文件中。因前面每次循环增加完一个sheet，此时rvalue长度即为加入的sheet的总行数，所以从现行数开始向文件中添加后续的sheet。
+    else:
+        for row in range(0,row_num):#按行读取，一行一行读取，读取整个sheet
+            rdata=table.row_values(row)
+            rvalue.append(rdata)
+            print(rvalue[lenrvalue:])
+        filevalue.append(rvalue[lenrvalue:])#按sheet为单位，添加到文件中。因前面每次循环增加完一个sheet，此时rvalue长度即为加入的sheet的总行数，所以从现行数开始向文件中添加后续的sheet。
+    return filevalue
+        
+    
+
+shname=[]
+filevalue=[]
+svalue=[]
+rvalue=[]
+
+#读取第一个待读文件，获取sheet数
+f1=open_xls(allxls[0])#打开第一个文件
+sh=getsheet(f1)#获得所有sheet
+x=0
+for sheet in sh:#按照列表方式遍历，不是按照数字遍历，想知道循环几次，用x来计数。
+    shname.append(sheet.name)
+    svalue.append([])#有几种类型的sheet就设立几个数组，以相同名称的sheet为单位往里添加数据为一组
+    x+=1
+#依次读取各sheet的内容
+#依次读取各文件当前sheet的内容
+for shnum in range(0,x):#第一个文件中有x个sheet，依次遍历
+    lenfvalue=len(filevalue)
+    y=0
+    for fb in allxls:#依次读取各文件，取各文件相同sheet名的内容
+        print('正在读取文件：'+str(fb)+'的第'+str(shnum)+'个标签...')
+        filevalue=get_file_value(fb,shnum) #filevalue为三维度[file1[行1['列1'，'列2','列3'],行2['列1'，'列2','列3']，...行n['列1'，'列2','列3']]...filen[行1['列1'，'列2','列3'],行2['列1'，'列2','列3']，...行n['列1'，'列2','列3']]]
+        y+=1
+    svalue[shnum].append(filevalue)#内层循环完后，得到一组各个文件相同sheet名的所有内容,直接添加到svalue中[[0[[[]]]],[1[[[]]]],[2[[[]]]]]
+    print(shnum)
+    print(svalue[shnum])
+print(svalue[0])
+print(svalue[1])
+    #由于append具有叠加关系，分析可得所有信息均在svalue[0][0]中存储
+
+#print(svalue)
+#svalue[0][0]元素数量为sheet标签数(sn)*文件数(fn)
+sn=x
+fn=len(allxls)
+endvalue=[]
+def getsvalue(k):
+    for z in range(k,k+fn):
+        endvalue.append(svalue[0][0][z])
+    return endvalue
+#打开最终写入的文件
+wb1=xlsxwriter.Workbook(end_xls)
+#创建一个sheet工作对象
+ws=wb1.add_worksheet()
+polit=0
+linenum=0
+#依次遍历每个sheet中的数据
+for s in range(0,sn*fn,fn):#步长为文件数
+    thisvalue=getsvalue(s)
+    tvalue=thisvalue[polit:]
+    #将一个标签的内容写入新文件中
+    for a in range(0,len(tvalue)):
+        for b in range(0,len(tvalue[a])):
+            for c in range(0,len(tvalue[a][b])):
+                data=tvalue[a][b][c]
+                ws.write(linenum,c,data)
+            linenum+=1
+    #叠加关系，需要设置分割点
+    polit=len(thisvalue)
+wb1.close()
